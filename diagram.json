@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "author": "depaula.io",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": -31.8, "left": -189.2, "attrs": {} },
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 206.44, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -142.5,
+      "left": -109.7,
+      "attrs": { "distance": "2" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": 409.6,
+      "left": 34.4,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-hx711",
+      "id": "hx711",
+      "top": 185,
+      "left": -679,
+      "attrs": { "units": "kg", "value": "2.5" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:3V3", "bb1:tp.25", "red", [] ],
+    [ "esp:GND.2", "bb1:tn.25", "black", [] ],
+    [ "ultrasonic1:VCC", "bb1:tp.11", "red", [] ],
+    [ "ultrasonic1:GND", "bb1:tn.14", "black", [] ],
+    [ "ultrasonic1:ECHO", "esp:12", "cyan", [] ],
+    [ "ultrasonic1:TRIG", "esp:13", "yellow", [] ],
+    [ "lcd1:GND", "bb1:tn.13", "black", [] ],
+    [ "lcd1:VCC", "bb1:tp.12", "red", [] ],
+    [ "lcd1:SDA", "esp:21", "white", [] ],
+    [ "lcd1:SCL", "esp:22", "orange", [] ],
+    [ "hx711:VCC", "bb1:tp.5", "red", [] ],
+    [ "hx711:GND", "bb1:tn.5", "black", [] ],
+    [ "hx711:DT", "esp:18", "green", [] ],
+    [ "hx711:SCK", "esp:19", "purple", [] ]
+  ],
+  "dependencies": {}
+}
